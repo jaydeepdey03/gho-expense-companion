@@ -12,7 +12,7 @@ const Web3ContextProvider = ({ children }) => {
   const { toast } = useToast();
 
   const [contractAddress, setContractAddress] = useState(
-    "0xF785dE5A1bB5C419f2a26e2ccB8d12BD07d9Ad6e"
+    "0x77478bBB5a7a1c4cCCa94964Ce892728DC00428C"
   );
 
   const DAIaddress = "0xFF34B3d4Aee8ddCd6F9AFFFB6Fe49bD371b8a357";
