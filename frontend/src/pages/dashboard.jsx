@@ -1,7 +1,7 @@
-import {ModeToggle} from "@/components/Toggletheme";
-import {Button} from "@/components/ui/button";
-import {useRouter} from "next/navigation";
-import {useContext, useEffect, useState} from "react";
+import { ModeToggle } from "@/components/Toggletheme";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -11,13 +11,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {useAccount, useNetwork, useSwitchNetwork, useBalance} from "wagmi";
-import {disconnect} from "@wagmi/core";
-import {toast} from "@/components/ui/use-toast";
-import {ConnectKitButton} from "connectkit";
-import {useTheme} from "next-themes";
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
+import { useAccount, useNetwork, useSwitchNetwork, useBalance } from "wagmi";
+import { disconnect } from "@wagmi/core";
+import { toast } from "@/components/ui/use-toast";
+import { ConnectKitButton } from "connectkit";
+import { useTheme } from "next-themes";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -34,9 +34,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import useWeb3Context from "../hooks/useWeb3Context";
-import {Label} from "@/components/ui/label";
-import {Input} from "@/components/ui/input";
-import {ErrorMessage, Field, Form, Formik} from "formik";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import {
   Tooltip,
@@ -52,17 +52,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {Menu} from "lucide-react";
-import {ReloadIcon} from "@radix-ui/react-icons";
+import { Menu } from "lucide-react";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 export default function Dashboard() {
   const GHOaddress = "0xc4bF5CbDaBE595361438F8c6a187bDc330539c60";
 
-  const {isConnected, address} = useAccount();
-  const {chain} = useNetwork();
+  const { isConnected, address } = useAccount();
+  const { chain } = useNetwork();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
-  const {chains, switchNetwork} = useSwitchNetwork();
+  const { chains, switchNetwork } = useSwitchNetwork();
 
   // open all modals
   const [openStakingModal, setOpenStakingModal] = useState(false);
@@ -184,17 +184,17 @@ export default function Dashboard() {
     fetchMembers();
   }, []);
 
-  function addMemberDashboard({role, address}) {
+  function addMemberDashboard({ role, address }) {
     if (role === "facilitator") {
-      addNewFacilitator({args: [address]});
+      addNewFacilitator({ args: [address] });
     } else {
-      addNewMember({args: [address]});
+      addNewMember({ args: [address] });
     }
   }
 
-  function sendGhoToUser({address, amount, chain}) {
+  function sendGhoToUser({ address, amount, chain }) {
     if (chain === "ethereum") {
-      transferToUser({args: [address, amount * 1e18]});
+      transferToUser({ args: [address, amount * 1e18] });
     } else {
       console.log("send gho cross chain");
       sendGhoCrossChain({
@@ -306,7 +306,7 @@ export default function Dashboard() {
             <DialogTitle>Fund your Contract with DAI</DialogTitle>
             <DialogDescription className="h-fit">
               <Formik
-                initialValues={{amount: ""}}
+                initialValues={{ amount: "" }}
                 onSubmit={(values) => {
                   console.log(values.amount * 1e18);
                   transferDAI({
@@ -342,7 +342,7 @@ export default function Dashboard() {
                         </div>
                       </div>
 
-                      <Button type="submit" style={{marginTop: "20px"}}>
+                      <Button type="submit" style={{ marginTop: "20px" }}>
                         Submit
                       </Button>
                     </div>
@@ -361,7 +361,7 @@ export default function Dashboard() {
             <DialogTitle>Fund your Contract with GHO</DialogTitle>
             <DialogDescription className="h-fit">
               <Formik
-                initialValues={{amount: ""}}
+                initialValues={{ amount: "" }}
                 onSubmit={(values) => {
                   console.log(values.amount * 1e18);
                   transferGHO({
@@ -397,7 +397,7 @@ export default function Dashboard() {
                         </div>
                       </div>
 
-                      <Button type="submit" style={{marginTop: "20px"}}>
+                      <Button type="submit" style={{ marginTop: "20px" }}>
                         Submit
                       </Button>
                     </div>
@@ -415,7 +415,7 @@ export default function Dashboard() {
             <DialogTitle>Withdraw your staked DAI</DialogTitle>
             <DialogDescription className="h-fit">
               <Formik
-                initialValues={{amount: ""}}
+                initialValues={{ amount: "" }}
                 onSubmit={(values) => {
                   console.log(values.amount * 1e18);
                   withdrawDAI({
@@ -451,7 +451,7 @@ export default function Dashboard() {
                         </div>
                       </div>
 
-                      <Button type="submit" style={{marginTop: "20px"}}>
+                      <Button type="submit" style={{ marginTop: "20px" }}>
                         Submit
                       </Button>
                     </div>
@@ -524,7 +524,7 @@ export default function Dashboard() {
               <DialogDescription>
                 <div className="w-full">
                   <Formik
-                    initialValues={{address: "", amount: "", chain: ""}}
+                    initialValues={{ address: "", amount: "", chain: "" }}
                     onSubmit={(values) => {
                       sendGhoToUser(values);
                     }}
@@ -616,7 +616,7 @@ export default function Dashboard() {
                               </a>
                             )}
                           </div>
-                          <Button type="submit" style={{marginTop: "20px"}}>
+                          <Button type="submit" style={{ marginTop: "20px" }}>
                             Submit
                           </Button>
                         </div>
@@ -639,8 +639,8 @@ export default function Dashboard() {
             className="grid h-20 w-20 place-items-center rounded-full bg-white"
           />
           <div className="text-center sm:text-left">
-            <h1 className="text-3xl font-bold">Hello</h1>
-            <p className="text-lg">Family Expense Tracker</p>
+            <h1 className="text-3xl font-bold">GHOExpense Companion</h1>
+            <p className="text-md">Empower Finances, Simplify Delegation - Your Ultimate Family Expense Companion!</p>
           </div>
         </div>
       </div>
@@ -801,7 +801,7 @@ export default function Dashboard() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Funds in Contract
+                Funds in Vault
               </CardTitle>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -824,7 +824,7 @@ export default function Dashboard() {
                 size="sm"
                 onClick={() => {
                   console.log(daiBalance);
-                  approveDAI({args: [daiBalance, poolAddress]});
+                  approveDAI({ args: [daiBalance, poolAddress] });
                 }}
               >
                 Approve DAI
@@ -836,7 +836,7 @@ export default function Dashboard() {
 
       <div
         className="grid grid-cols-1 gap-4 p-8 xl:grid-cols-3 xl:grid-rows-5 w-full"
-        // style={{gridTemplateColumns: `repeat(auto-fit, minmax(400px, 1fr))`}}
+      // style={{gridTemplateColumns: `repeat(auto-fit, minmax(400px, 1fr))`}}
       >
         <Dialog open={addMemberModal} onOpenChange={setAddMemberModal}>
           <DialogContent>
@@ -844,7 +844,7 @@ export default function Dashboard() {
               <DialogTitle>Add New Member</DialogTitle>
               <DialogDescription className="h-fit">
                 <Formik
-                  initialValues={{role: "", address: ""}}
+                  initialValues={{ role: "", address: "" }}
                   onSubmit={(values, _) => {
                     addMemberDashboard(values);
                     console.log(values);
@@ -960,7 +960,7 @@ export default function Dashboard() {
                   </div>
                   <Select
                     onValueChange={() =>
-                      toggleFacilitator({args: [memberAddress]})
+                      toggleFacilitator({ args: [memberAddress] })
                     }
                     disabled={address === memberAddress}
                     defaultValue={
@@ -999,7 +999,7 @@ export default function Dashboard() {
                 <DialogDescription className="h-fit">
                   <div>
                     <Formik
-                      initialValues={{amount: ""}}
+                      initialValues={{ amount: "" }}
                       onSubmit={(values) => {
                         // console.log(values.amount * 1e18);
                         supplyLiquidity({
@@ -1161,7 +1161,7 @@ export default function Dashboard() {
                 <DialogTitle>Borrow</DialogTitle>
                 <DialogDescription>
                   <Formik
-                    initialValues={{amount: ""}}
+                    initialValues={{ amount: "" }}
                     onSubmit={(values) => console.log(values)}
                   >
                     {(formik) => (
