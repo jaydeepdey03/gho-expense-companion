@@ -519,9 +519,9 @@ export default function Dashboard() {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Send GHO</DialogTitle>
-            <div className="h-fit w-full">
+            <div className="h-full w-full">
               <DialogDescription>
-                <div>
+                <div className="w-full">
                   <Formik
                     initialValues={{address: "", amount: "", chain: ""}}
                     onSubmit={(values) => {
@@ -530,11 +530,11 @@ export default function Dashboard() {
                   >
                     {(formik) => (
                       <Form>
-                        <div className="w-full p-4 flex flex-col space-y-3">
+                        <div className="p-4 flex flex-col space-y-3">
                           <Label htmlFor="email" className="ml-1">
                             Amount
                           </Label>
-                          <div className="w-full border-[1px] border-slate-200 h-16 rounded-lg flex flex-col">
+                          <div className="border-[1px] border-slate-200 h-16 rounded-lg flex flex-col">
                             <div className="flex h-[60%]">
                               <Field
                                 as={Input}
@@ -604,8 +604,16 @@ export default function Dashboard() {
                               className="flex-1 mt-2"
                             />
                           </div>
-                          <div>
-                            {<p>{crossChainHash && crossChainHash.hash}</p>}
+                          <div className="">
+                            {crossChainHash && (
+                              <a
+                                href={`https://sepolia.etherscan.io/tx/${crossChainHash.hash}`}
+                                className="hover:text-gray-700 text-gray-500"
+                                target="_blank"
+                              >
+                                Click to view tx in Etherscan
+                              </a>
+                            )}
                           </div>
                           <Button type="submit" style={{marginTop: "20px"}}>
                             Submit
@@ -625,8 +633,8 @@ export default function Dashboard() {
         <div className="flex flex-1 flex-col items-center gap-4 sm:flex-row">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/girl.png"
-            alt="girl"
+            src="/boy.png"
+            alt="boy"
             className="grid h-20 w-20 place-items-center rounded-full bg-white"
           />
           <div className="text-center sm:text-left">
